@@ -24,7 +24,8 @@ df_employee = pd.read_sql("""SELECT firstname, lastname,city,state FROM employee
 
 # STEP 4
 # Replace None with your code
-df_contacts = None
+df_contacts =  pd.read_sql("""SELECT contactfirstname,contactlastname,phone,salesrepemployeenumber FROM customers left join orders using(customernumber) group by customernumber having count(ordernumber) = 0 order by contactlastname;""",conn)
+
 
 # STEP 5
 # Replace None with your code
