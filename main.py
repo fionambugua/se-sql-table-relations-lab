@@ -39,7 +39,8 @@ df_credit = pd.read_sql("""select employeenumber, firstname,lastname, count(cust
 
 # STEP 7
 # Replace None with your code
-df_product_sold = None
+df_product_sold = pd.read_sql("""select productname ,count(ordernumber) numorders, sum(quantityordered) totalunits from products join orderdetails using(productcode) join orders using(ordernumber) group by productcode order by totalunits desc;""",conn)
+
 
 # STEP 8
 # Replace None with your code
