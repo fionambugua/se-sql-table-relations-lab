@@ -9,7 +9,8 @@ conn = sqlite3.connect('data.sqlite')
 
 # STEP 1
 # Replace None with your code
-df_boston = None
+df_boston = pd.read_sql("""SELECT firstname,lastname FROM employees join offices using(officecode) where city ="Boston";""", conn)
+
 
 # STEP 2
 # Replace None with your code
