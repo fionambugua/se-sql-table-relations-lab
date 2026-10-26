@@ -34,7 +34,8 @@ df_payment = pd.read_sql("""select contactfirstname,contactlastname,amount,payme
 
 # STEP 6
 # Replace None with your code
-df_credit = None
+df_credit = pd.read_sql("""select employeenumber, firstname,lastname, count(customernumber) no_cust from employees join customers on employeenumber = salesrepemployeenumber group by employeenumber having avg(creditlimit) > 90000 order by no_cust desc limit 4;""",conn)
+
 
 # STEP 7
 # Replace None with your code
