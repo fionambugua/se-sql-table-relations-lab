@@ -49,7 +49,8 @@ df_total_customers = pd.read_sql("""select productname, productcode, count(disti
 
 # STEP 9
 # Replace None with your code
-df_customers = None
+df_customers = pd.read_sql("""select o.officecode, o.city, count(distinct customernumber) n_customers from offices o join employees using(officecode) left join customers on employeenumber = salesrepemployeenumber group by officecode;""",conn)
+
 
 # STEP 10
 # Replace None with your code
