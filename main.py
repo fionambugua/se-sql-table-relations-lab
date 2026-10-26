@@ -14,7 +14,8 @@ df_boston = pd.read_sql("""SELECT firstname,lastname FROM employees join offices
 
 # STEP 2
 # Replace None with your code
-df_zero_emp = None
+df_zero_emp = pd.read_sql("""SELECT officecode, count(employeenumber) no_emp FROM offices left join employees using(officecode) group by officecode having no_emp =0;""", conn)
+
 
 # STEP 3
 # Replace None with your code
