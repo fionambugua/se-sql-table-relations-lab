@@ -29,7 +29,8 @@ df_contacts =  pd.read_sql("""SELECT contactfirstname,contactlastname,phone,sale
 
 # STEP 5
 # Replace None with your code
-df_payment = None
+df_payment = pd.read_sql("""select contactfirstname,contactlastname,amount,paymentdate from customers join payments using(customernumber) order by cast(amount as float) desc;""",conn)
+
 
 # STEP 6
 # Replace None with your code
