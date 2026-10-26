@@ -44,7 +44,8 @@ df_product_sold = pd.read_sql("""select productname ,count(ordernumber) numorder
 
 # STEP 8
 # Replace None with your code
-df_total_customers = None
+df_total_customers = pd.read_sql("""select productname, productcode, count(distinct customernumber) numpurchasers from products join orderdetails using(productcode) join orders using(ordernumber) group by productcode order by numpurchasers desc;""",conn)
+
 
 # STEP 9
 # Replace None with your code
