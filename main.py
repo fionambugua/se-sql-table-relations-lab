@@ -19,7 +19,8 @@ df_zero_emp = pd.read_sql("""SELECT officecode, count(employeenumber) no_emp FRO
 
 # STEP 3
 # Replace None with your code
-df_employee = None
+df_employee = pd.read_sql("""SELECT firstname, lastname,city,state FROM employees join offices using(officecode) order by firstname,lastname;""",conn)
+
 
 # STEP 4
 # Replace None with your code
