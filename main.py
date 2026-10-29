@@ -54,6 +54,22 @@ df_customers = pd.read_sql("""select o.officecode, o.city, count(distinct custom
 
 # STEP 10
 # Replace None with your code
-df_under_20 = None
+df_under_20 = pd.read_sql("""
+    SELECT DISTINCT e.employeeNumber, e.firstName, e.lastName,
+           o.city, o.officeCode
+    FROM employees e
+    JOIN offices o ON e.officeCode = o.officeCode
+    JOIN customers c ON c.salesRepEmployeeNumber = e.employeeNumber
+    JOIN orders ord ON ord.customerNumber = c.customerNumber
+    JOIN orderdetails od ON od.orderNumber = ord.orderNumber
+    WHERE od.productCode IN (
+        SELECT od2.productCode
+        FROM orderdetails od2
+        JOIN orders o2 ON od2.orderNumber = o2.orderNumber
+        GROUP BY od2.productCode
+        HAVING COUNT(DISTINCT o2.customerNumber) < 20
+    )
+    ORDER BY e.lastName, e.firstName
+""", conn)
 
 conn.close()
